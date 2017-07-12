@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="vue,原生js," />
 
 
 
@@ -87,15 +87,17 @@
 
 
 
-<meta name="description" content="愿人生里所遇的朋友都是酒肉。 不要述衷肠，不要离别殇。 有酒就喝，有歌就唱。 当戏一样。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="你好再见">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="既然说了极验，那么我就简单介绍一下极验是一个什么工具： 极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。 与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或汉字，整个验证过程变的像游戏一样有趣。目前极验在各大门户网站的登录页面上频繁出现，可见其在智能验证码">
+<meta name="keywords" content="vue,原生js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极验与vue的原生js结合">
+<meta property="og:url" content="http://yoursite.com/2017/07/12/极验与vue的原生js结合/index.html">
 <meta property="og:site_name" content="你好再见">
-<meta property="og:description" content="愿人生里所遇的朋友都是酒肉。 不要述衷肠，不要离别殇。 有酒就喝，有歌就唱。 当戏一样。">
+<meta property="og:description" content="既然说了极验，那么我就简单介绍一下极验是一个什么工具： 极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。 与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或汉字，整个验证过程变的像游戏一样有趣。目前极验在各大门户网站的登录页面上频繁出现，可见其在智能验证码">
+<meta property="og:updated_time" content="2017-07-12T03:10:53.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好再见">
-<meta name="twitter:description" content="愿人生里所遇的朋友都是酒肉。 不要述衷肠，不要离别殇。 有酒就喝，有歌就唱。 当戏一样。">
+<meta name="twitter:title" content="极验与vue的原生js结合">
+<meta name="twitter:description" content="既然说了极验，那么我就简单介绍一下极验是一个什么工具： 极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。 与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或汉字，整个验证过程变的像游戏一样有趣。目前极验在各大门户网站的登录页面上频繁出现，可见其在智能验证码">
 
 
 
@@ -123,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/12/极验与vue的原生js结合/"/>
 
 
 
 
 
-  <title> 你好再见 </title>
+  <title> 极验与vue的原生js结合 | 你好再见 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,9 +259,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -291,10 +291,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/07/12/极验与vue的原生js结合/" itemprop="url">
-                  极验与vue的原生js结合
-                </a>
+                极验与vue的原生js结合
               
             
           </h1>
@@ -367,54 +364,120 @@
       
 
       
+        <p>既然说了极验，那么我就简单介绍一下极验是一个什么工具：</p>
+<p>极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。</p>
+<p>与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或汉字，整个验证过程变的像游戏一样有趣。目前极验在各大门户网站的登录页面上频繁出现，可见其在智能验证码方向的优秀。</p>
+<p>现在我们来说说如何将极验前端的内容和vue用原生js进行结合：</p>
+<p>一般来说，在jquery框架或者其它框架内，直接引入极验前端的sdk或js文件即可，并且极验的js文件是一个闭包函数，直接引入即可；但是在vue内想通过script标签引入第三方js文件就不像传统的前端框架或html文件那样方便，因为vue本身是使用的es6语法，需要通过用webpack和gulp之类的工具编译es6后再使用script，因此咱们还是中规中矩用点简单的方法来引入：</p>
+<p>将极验的闭包函数赋值给一个变量，然后通过es6的export default导出（当然也可以直接将该闭包函数通过export default导出）</p>
+<pre><code>var gtInit = (function (global, factory) {
+    &quot;use strict&quot;;
+    ...
+})(typeof window !== &quot;undefined&quot; ? window : this, function (window, noGlobal) {
+    &quot;use strict&quot;;
+    if (typeof window === &apos;undefined&apos;) {
+        throw new Error(&apos;Geetest requires browser environment&apos;);
+    }
+    ...
+    window.initGeetest = initGeetest;
+    return initGeetest;
+});
+
+export default {
+    gtInit
+}
+</code></pre><p>然后就可以在你想使用极验验证码的地方，通过import导入极验的闭包函数，由于闭包函数将想要返回的initGeetest函数赋传给了window，因此可以通过调用window.initGeetest({})函数来使用极验了：</p>
+<pre><code> import gtInit from &apos;../assets/gt&apos;
+ export default {
+    ...
+    initGtCaptcha () {
+      var _this = this
+      captchaApi.getGtCaptcha()
+        .then(function(res) {
+          console.log(gtInit);
+          window.initGeetest({
+              // 以下 4 个配置参数为必须，不能缺少
+              gt: res.data.gt,
+              challenge: res.data.challenge,
+              offline: !res.data.success, // 表示用户后台检测极验服务器是否宕机
+              new_captcha: res.data.new_captcha, // 用于宕机时表示是新验证码的宕机
+
+              product: &quot;float&quot;, // 产品形式，包括：float，popup
+              width: &quot;260px&quot;
+          }, function (captchaObj) {
+            captchaObj.appendTo(&apos;#captcha&apos;);
+            captchaObj.onReady(function () {
+                document.getElementById(&apos;wait&apos;).style.display = &apos;none&apos;;
+            });
+            captchaObj.onSuccess(function () {
+              _this.gtCapValid = captchaObj.getValidate();
+            })
+            captchaObj.onError(function () {
+                // 出错啦，可以提醒用户稍后进行重试
+              _this.$notify.error({
+                title: &apos;错误&apos;,
+                message: &apos;出错啦，请稍后进行重试&apos;
+              })
+            });
+          });
+        })
+    }
+  }
+}
+</code></pre><p>window.initGeetest的回调函数的参数是极验验证码的dom，在该回调函数内可将验证码dom放置在你的页面任何地方，然后你就可以看到你的vue页面出现了极验验证码啦~（具体的函数、参数等内容请在注册极验验证码帐号后查看官方文档）。</p>
+
+      
+    </div>
+
+    <div>
+      
         
-          
-          既然说了极验，那么我就简单介绍一下极验是一个什么工具：
-极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。
-与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/12/极验与vue的原生js结合/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/原生js/" rel="tag"># 原生js</a>
+          
+        </div>
+      
+
+      
+        
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -422,6 +485,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -622,6 +689,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
