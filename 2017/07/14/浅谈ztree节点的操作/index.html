@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="你好再见">
 <meta property="og:description" content="zTree 是一个依靠 jQuery 实现的多功能 “树插件”。使用zTree会涉及到一些操作的逻辑，例如增加节点、删除节点等，下面我简要描述一下实际使用中的一点心得。 zTree的节点json设计（也就是你后台的数据库设计）可以采用以下设计格式，每一个节点由id、pId、level、name等字段构成，另外可添加一个relation字段来表示各节点直接的联系，例如一级节点（id为1）可作0.，">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6319843-3ac045e77d4b5cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-07-14T08:44:30.979Z">
+<meta property="og:updated_time" content="2017-07-14T08:46:07.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈ztree节点的操作">
 <meta name="twitter:description" content="zTree 是一个依靠 jQuery 实现的多功能 “树插件”。使用zTree会涉及到一些操作的逻辑，例如增加节点、删除节点等，下面我简要描述一下实际使用中的一点心得。 zTree的节点json设计（也就是你后台的数据库设计）可以采用以下设计格式，每一个节点由id、pId、level、name等字段构成，另外可添加一个relation字段来表示各节点直接的联系，例如一级节点（id为1）可作0.，">
@@ -384,22 +384,27 @@
 </code></pre><blockquote>
 <p>有了上述的格式后便可开始实际的操作了，比如异步获取数据（async，此setting在zTree的官方api上有对应内容），当然我们现在要讲的内容是对节点的操作，对其它内容不做拓展，请读者自行查阅zTree官方文档。</p>
 </blockquote>
-<h6 id="假设有API（以Restful-API设计格式）："><a href="#假设有API（以Restful-API设计格式）：" class="headerlink" title="假设有API（以Restful API设计格式）："></a>假设有API（以Restful API设计格式）：</h6><pre><code>1. POST /api/node
+<p>假设有API（以Restful API设计格式）：</p>
+<pre><code>1. POST /api/node
 
 2. GET /api/nodes
 
 ...
-</code></pre><h5 id="对于新增节点来说，存在着新增根节点与新增子节点两种情况："><a href="#对于新增节点来说，存在着新增根节点与新增子节点两种情况：" class="headerlink" title="对于新增节点来说，存在着新增根节点与新增子节点两种情况："></a>对于新增节点来说，存在着新增根节点与新增子节点两种情况：</h5><ol>
+</code></pre><p>对于新增节点来说，存在着新增根节点与新增子节点两种情况：</p>
+<ol>
 <li><p>对于新增根节点，父节点为0，层级为1，将节点对应的data={pId:0,level:1,name:’xxx}通过ajax或其它手段使用POST api路径（POST /api/node）向后台请求即可（id应该不重复，mysql可设置自增，mongodb本身则生成一条id不重复的文档）；</p>
 </li>
 <li><p>对于新增子节点，父节点为上一级节点id，层级为父节点层级加1，下一步新增操作如上新增根节点一致。</p>
 </li>
 </ol>
-<h5 id="新增节点的逻辑大致如下："><a href="#新增节点的逻辑大致如下：" class="headerlink" title="新增节点的逻辑大致如下："></a>新增节点的逻辑大致如下：</h5><p><img src="http://upload-images.jianshu.io/upload_images/6319843-3ac045e77d4b5cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="images"></p>
+<p>新增节点的逻辑大致如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6319843-3ac045e77d4b5cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="images"></p>
 <blockquote>
 <p>对于获取树节点，这里有一个点容易弄混，就是树的作用。对于树来说，它应该只作为一个数据的索引，而不是说通过请求后台api就要将所有的data（你想展示的内容，或者说你的业务逻辑需要用到的数据）都在树上展示出来（如果需要将data展示出来为什么不能直接用循环来将data放置在多个div块呢？）。树展示的节点应该尽量简介，例如zTree官网展示的demo只显示了节点的名称。</p>
 </blockquote>
-<h5 id="那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？"><a href="#那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？" class="headerlink" title="那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？"></a>那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？</h5><h6 id="这个问题可以用两种方式来解答："><a href="#这个问题可以用两种方式来解答：" class="headerlink" title="这个问题可以用两种方式来解答："></a>这个问题可以用两种方式来解答：</h6><ol>
+<p>那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？</p>
+<p>这个问题可以用两种方式来解答：</p>
+<ol>
 <li><p>如果在向后台请求时（GET /api/nodes），返回的json存在data，那么则在点击zTree上节点时（点击时提供一个回调函数，函数的参数其中之一即为当前节点的信息），可通过各种形式模态框、iframe内嵌的页面或你想使用的dom形式来展示对应节点的信息。</p>
 </li>
 <li><p>可以通过对应节点的id来发起请求例如（/api/node/1），以此来获得对应节点的信息。</p>
@@ -510,17 +515,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/halomoto.png"
@@ -602,22 +598,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#假设有API（以Restful-API设计格式）："><span class="nav-number">1.</span> <span class="nav-text">假设有API（以Restful API设计格式）：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于新增节点来说，存在着新增根节点与新增子节点两种情况："><span class="nav-number"></span> <span class="nav-text">对于新增节点来说，存在着新增根节点与新增子节点两种情况：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#新增节点的逻辑大致如下："><span class="nav-number"></span> <span class="nav-text">新增节点的逻辑大致如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？"><span class="nav-number"></span> <span class="nav-text">那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#这个问题可以用两种方式来解答："><span class="nav-number">1.</span> <span class="nav-text">这个问题可以用两种方式来解答：</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
