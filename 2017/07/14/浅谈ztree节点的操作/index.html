@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue,原生js," />
+  <meta name="keywords" content="jquery,ztree," />
 
 
 
@@ -87,17 +87,19 @@
 
 
 
-<meta name="description" content="既然说了极验，那么我就简单介绍一下极验是一个什么工具： 极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。 与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或汉字，整个验证过程变的像游戏一样有趣。目前极验在各大门户网站的登录页面上频繁出现，可见其在智能验证码">
-<meta name="keywords" content="vue,原生js">
+<meta name="description" content="zTree 是一个依靠 jQuery 实现的多功能 “树插件”。使用zTree会涉及到一些操作的逻辑，例如增加节点、删除节点等，下面我简要描述一下实际使用中的一点心得。 zTree的节点json设计（也就是你后台的数据库设计）可以采用以下设计格式，每一个节点由id、pId、level、name等字段构成，另外可添加一个relation字段来表示各节点直接的联系，例如一级节点（id为1）可作0.，">
+<meta name="keywords" content="jquery,ztree">
 <meta property="og:type" content="article">
-<meta property="og:title" content="极验与vue的原生js结合">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/极验与vue的原生js结合/index.html">
+<meta property="og:title" content="浅谈ztree节点的操作">
+<meta property="og:url" content="http://yoursite.com/2017/07/14/浅谈ztree节点的操作/index.html">
 <meta property="og:site_name" content="你好再见">
-<meta property="og:description" content="既然说了极验，那么我就简单介绍一下极验是一个什么工具： 极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。 与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或汉字，整个验证过程变的像游戏一样有趣。目前极验在各大门户网站的登录页面上频繁出现，可见其在智能验证码">
-<meta property="og:updated_time" content="2017-07-12T03:10:53.145Z">
+<meta property="og:description" content="zTree 是一个依靠 jQuery 实现的多功能 “树插件”。使用zTree会涉及到一些操作的逻辑，例如增加节点、删除节点等，下面我简要描述一下实际使用中的一点心得。 zTree的节点json设计（也就是你后台的数据库设计）可以采用以下设计格式，每一个节点由id、pId、level、name等字段构成，另外可添加一个relation字段来表示各节点直接的联系，例如一级节点（id为1）可作0.，">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6319843-3ac045e77d4b5cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-07-14T08:35:16.113Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="极验与vue的原生js结合">
-<meta name="twitter:description" content="既然说了极验，那么我就简单介绍一下极验是一个什么工具： 极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。 与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或汉字，整个验证过程变的像游戏一样有趣。目前极验在各大门户网站的登录页面上频繁出现，可见其在智能验证码">
+<meta name="twitter:title" content="浅谈ztree节点的操作">
+<meta name="twitter:description" content="zTree 是一个依靠 jQuery 实现的多功能 “树插件”。使用zTree会涉及到一些操作的逻辑，例如增加节点、删除节点等，下面我简要描述一下实际使用中的一点心得。 zTree的节点json设计（也就是你后台的数据库设计）可以采用以下设计格式，每一个节点由id、pId、level、name等字段构成，另外可添加一个relation字段来表示各节点直接的联系，例如一级节点（id为1）可作0.，">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/6319843-3ac045e77d4b5cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -125,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/12/极验与vue的原生js结合/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/14/浅谈ztree节点的操作/"/>
 
 
 
 
 
-  <title> 极验与vue的原生js结合 | 你好再见 </title>
+  <title> 浅谈ztree节点的操作 | 你好再见 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -280,7 +282,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/12/极验与vue的原生js结合/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/14/浅谈ztree节点的操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="茧">
@@ -301,7 +303,7 @@
             
             
               
-                极验与vue的原生js结合
+                浅谈ztree节点的操作
               
             
           </h1>
@@ -316,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-12T10:17:04+08:00">
-                2017-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-14T16:28:04+08:00">
+                2017-07-14
               </time>
             
 
@@ -339,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
                   </a>
                 </span>
 
@@ -374,67 +376,42 @@
       
 
       
-        <p>既然说了极验，那么我就简单介绍一下极验是一个什么工具：</p>
-<p>极验验证是一种在计算机领域用于区分自然人和机器人的，通过简单集成的方式，为开发者提供安全、便捷的云端验证服务。</p>
-<p>与以往传统验证码不同的是，极验通过分析用户完成拼图过程中的行为特征，通过数据分析来判断是人还是机器。用户不必面对眼花缭乱的英文字符或汉字，整个验证过程变的像游戏一样有趣。目前极验在各大门户网站的登录页面上频繁出现，可见其在智能验证码方向的优秀。</p>
-<p>现在我们来说说如何将极验前端的内容和vue用原生js进行结合：</p>
-<p>一般来说，在jquery框架或者其它框架内，直接引入极验前端的sdk或js文件即可，并且极验的js文件是一个闭包函数，直接引入即可；但是在vue内想通过script标签引入第三方js文件就不像传统的前端框架或html文件那样方便，因为vue本身是使用的es6语法，需要通过用webpack和gulp之类的工具编译es6后再使用script，因此咱们还是中规中矩用点简单的方法来引入：</p>
-<p>将极验的闭包函数赋值给一个变量，然后通过es6的export default导出（当然也可以直接将该闭包函数通过export default导出）</p>
-<pre><code>var gtInit = (function (global, factory) {
-    &quot;use strict&quot;;
-    ...
-})(typeof window !== &quot;undefined&quot; ? window : this, function (window, noGlobal) {
-    &quot;use strict&quot;;
-    if (typeof window === &apos;undefined&apos;) {
-        throw new Error(&apos;Geetest requires browser environment&apos;);
-    }
-    ...
-    window.initGeetest = initGeetest;
-    return initGeetest;
-});
+        <blockquote>
+<p>zTree 是一个依靠 jQuery 实现的多功能 “树插件”。使用zTree会涉及到一些操作的逻辑，例如增加节点、删除节点等，下面我简要描述一下实际使用中的一点心得。</p>
+<p>zTree的节点json设计（也就是你后台的数据库设计）可以采用以下设计格式，每一个节点由id、pId、level、name等字段构成，另外可添加一个relation字段来表示各节点直接的联系，例如一级节点（id为1）可作0.，二级节点可作0.1.（以‘.’号结尾）。其它的node格式可参考<a href="http://www.treejs.cn/v3/main.php#_zTreeInfo" target="_blank" rel="external">zTree官网demo</a>：</p>
+</blockquote>
+<pre><code>var zNodes =[{id:1, pId:0, level:1, name:&quot;test&quot;, open:true}];
+</code></pre><blockquote>
+<p>有了上述的格式后便可开始实际的操作了，比如异步获取数据（async，此setting在zTree的官方api上有对应内容），当然我们现在要讲的内容是对节点的操作，对其它内容不做拓展，请读者自行查阅zTree官方文档。</p>
+</blockquote>
+<h6 id="假设有API（以Restful-API设计格式）："><a href="#假设有API（以Restful-API设计格式）：" class="headerlink" title="假设有API（以Restful API设计格式）："></a>假设有API（以Restful API设计格式）：</h6><pre><code>1. POST /api/node
 
-export default {
-    gtInit
-}
-</code></pre><p>然后就可以在你想使用极验验证码的地方，通过import导入极验的闭包函数，由于闭包函数将想要返回的initGeetest函数赋传给了window，因此可以通过调用window.initGeetest({})函数来使用极验了：</p>
-<pre><code> import gtInit from &apos;../assets/gt&apos;
- export default {
-    ...
-    initGtCaptcha () {
-      var _this = this
-      captchaApi.getGtCaptcha()
-        .then(function(res) {
-          console.log(gtInit);
-          window.initGeetest({
-              // 以下 4 个配置参数为必须，不能缺少
-              gt: res.data.gt,
-              challenge: res.data.challenge,
-              offline: !res.data.success, // 表示用户后台检测极验服务器是否宕机
-              new_captcha: res.data.new_captcha, // 用于宕机时表示是新验证码的宕机
+2. GET /api/nodes
 
-              product: &quot;float&quot;, // 产品形式，包括：float，popup
-              width: &quot;260px&quot;
-          }, function (captchaObj) {
-            captchaObj.appendTo(&apos;#captcha&apos;);
-            captchaObj.onReady(function () {
-                document.getElementById(&apos;wait&apos;).style.display = &apos;none&apos;;
-            });
-            captchaObj.onSuccess(function () {
-              _this.gtCapValid = captchaObj.getValidate();
-            })
-            captchaObj.onError(function () {
-                // 出错啦，可以提醒用户稍后进行重试
-              _this.$notify.error({
-                title: &apos;错误&apos;,
-                message: &apos;出错啦，请稍后进行重试&apos;
-              })
-            });
-          });
-        })
-    }
-  }
-}
-</code></pre><p>window.initGeetest的回调函数的参数是极验验证码的dom，在该回调函数内可将验证码dom放置在你的页面任何地方，然后你就可以看到你的vue页面出现了极验验证码啦~（具体的函数、参数等内容请在注册极验验证码帐号后查看官方文档）。</p>
+...
+</code></pre><h5 id="对于新增节点来说，存在着新增根节点与新增子节点两种情况："><a href="#对于新增节点来说，存在着新增根节点与新增子节点两种情况：" class="headerlink" title="对于新增节点来说，存在着新增根节点与新增子节点两种情况："></a>对于新增节点来说，存在着新增根节点与新增子节点两种情况：</h5><ol>
+<li><p>对于新增根节点，父节点为0，层级为1，将节点对应的data={pId:0,level:1,name:’xxx}通过ajax或其它手段使用POST api路径（POST /api/node）向后台请求即可（id应该不重复，mysql可设置自增，mongodb本身则生成一条id不重复的文档）；</p>
+</li>
+<li><p>对于新增子节点，父节点为上一级节点id，层级为父节点层级加1，下一步新增操作如上新增根节点一致。</p>
+</li>
+</ol>
+<h5 id="新增节点的逻辑大致如下："><a href="#新增节点的逻辑大致如下：" class="headerlink" title="新增节点的逻辑大致如下："></a>新增节点的逻辑大致如下：</h5><p><img src="http://upload-images.jianshu.io/upload_images/6319843-3ac045e77d4b5cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="images"></p>
+<blockquote>
+<p>对于获取树节点，这里有一个点容易弄混，就是树的作用。对于树来说，它应该只作为一个数据的索引，而不是说通过请求后台api就要将所有的data（你想展示的内容，或者说你的业务逻辑需要用到的数据）都在树上展示出来（如果需要将data展示出来为什么不能直接用循环来将data放置在多个div块呢？）。树展示的节点应该尽量简介，例如zTree官网展示的demo只显示了节点的名称。</p>
+</blockquote>
+<h5 id="那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？"><a href="#那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？" class="headerlink" title="那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？"></a>那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？</h5><h6 id="这个问题可以用两种方式来解答："><a href="#这个问题可以用两种方式来解答：" class="headerlink" title="这个问题可以用两种方式来解答："></a>这个问题可以用两种方式来解答：</h6><ol>
+<li><p>如果在向后台请求时（GET /api/nodes），返回的json存在data，那么则在点击zTree上节点时（点击时提供一个回调函数，函数的参数其中之一即为当前节点的信息），可通过各种形式模态框、iframe内嵌的页面或你想使用的dom形式来展示对应节点的信息。</p>
+</li>
+<li><p>可以通过对应节点的id来发起请求例如（/api/node/1），以此来获得对应节点的信息。</p>
+</li>
+</ol>
+<blockquote>
+<p>对于以上两种形式，个人比较推崇后者。生成树时只需要一些很简单的字段（id，pid，name等），考虑这种情况，我们想要生产的树的节点映射的是一个个文档，那么假设文档（doc）除了上述简单字段外还有content、status，doc_html等其它内容。</p>
+<p>站在生成树的角度来说，使用第一种方式，如果在获取节点时，直接将节点的所有字段全数返回，那么很明显对于生成树是很冗余的，并且当doc的content或doc_html内容较长，大小过大时必然会影响树的生成性能，本来10ms的事弄成需要100ms就得不偿失了。</p>
+<p>另一方面，使用第二种方式，对于获取节点信息或操作信息本身和生成树就是处在不同的业务范围内，不应该放在同一个维度上来处理；并且在获取信息时，不同的操作需要用到的信息也会不同，例如当查看doc信息时，只需要看到dochtml,当修改doc信息时，需要使用到content、status等信息；基于原子操作，当使用第一种方式时，如果文档doca是公用的，有两个人在一段很短的时间内操作该文档（假设A用户、B用户均已打开页面并在操作期间没有进行页面刷新），A用户在查看doca而B用户在修改doca，当B用户在修改doca完成后，A用户点击doca对应节点，显然A用户并没有获取到更新后的dochtml，而使用第二种方式则能通过发起请求获取到修改后的数据信息。</p>
+<p>以上就是我向讨论一点点内容，才疏学浅，请各位指教，另外如果希望看一下对应的内容可以看我的github的PDoc（前端使用的树不是用的zTree，用的是element-ui的树但是大同小异，后台用的node，欢迎各位star，各位提issue，各位拍砖~），下附地址：</p>
+</blockquote>
+<p><a href="https://github.com/JiaXingBinggan/PDoc-vue.git" target="_blank" rel="external">前端地址</a>  <a href="https://github.com/JiaXingBinggan/PDoc-node.git" target="_blank" rel="external">后台地址</a></p>
 
       
     </div>
@@ -464,9 +441,9 @@ export default {
       
         <div class="post-tags">
           
-            <a href="/tags/vue/" rel="tag"># vue</a>
+            <a href="/tags/jquery/" rel="tag"># jquery</a>
           
-            <a href="/tags/原生js/" rel="tag"># 原生js</a>
+            <a href="/tags/ztree/" rel="tag"># ztree</a>
           
         </div>
       
@@ -479,15 +456,15 @@ export default {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/07/12/极验与vue的原生js结合/" rel="next" title="极验与vue的原生js结合">
+                <i class="fa fa-chevron-left"></i> 极验与vue的原生js结合
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/14/浅谈ztree节点的操作/" rel="prev" title="浅谈ztree节点的操作">
-                浅谈ztree节点的操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -534,8 +511,17 @@ export default {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/halomoto.png"
@@ -617,6 +603,22 @@ export default {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#假设有API（以Restful-API设计格式）："><span class="nav-number">1.</span> <span class="nav-text">假设有API（以Restful API设计格式）：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于新增节点来说，存在着新增根节点与新增子节点两种情况："><span class="nav-number"></span> <span class="nav-text">对于新增节点来说，存在着新增根节点与新增子节点两种情况：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#新增节点的逻辑大致如下："><span class="nav-number"></span> <span class="nav-text">新增节点的逻辑大致如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？"><span class="nav-number"></span> <span class="nav-text">那么此时读者可能会问：那么对应节点的数据应该怎么展示呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#这个问题可以用两种方式来解答："><span class="nav-number">1.</span> <span class="nav-text">这个问题可以用两种方式来解答：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
